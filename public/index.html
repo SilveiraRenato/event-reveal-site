@@ -6,6 +6,7 @@
     <title>Event Reveal Site</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="arbitrage.css">
 </head>
 <body>
     <!-- Header fixo -->
@@ -76,13 +77,32 @@
         </div>
     </section>
 
-    <!-- Future React Section -->
-    <section class="react-section">
-        <div class="container">
-            <div class="react-placeholder">
-                <div class="react-icon">⚛️</div>
-                <h3>Seção React</h3>
-                <p>Mecânica de entrada será implementada aqui com React</p>
+    <!-- Arbitrage Entry Section -->
+    <section class="arbitrage-section">
+        <div class="arbitrage-container">
+            <h2 class="arbitrage-title">Amostra Grátis da Operação de Arbitragem</h2>
+            <p class="arbitrage-subtitle">Teste nossa calculadora e veja o potencial de lucro</p>
+            
+            <div class="entry-section">
+                <div class="entry-example">
+                    <h4>Exemplo de entrada (copie e cole):</h4>
+                    <div>2024-07-23 13:30    Barcelona - Real Madrid / Europa - UEFA Conference League<br>
+Betano (BR)     Time 1 classificar    2.6    0.0    2.600    2400.00    0    BRL    1240.00    24.80%<br>
+Brazino (BR)  Time 2 classificar    2.4    0.0    2.400    2600.00    0    BRL    1240.00<br>
+                    5000        BRL</div>
+                </div>
+                
+                <textarea 
+                    id="entryInput" 
+                    class="entry-input" 
+                    placeholder="Cole aqui a entrada da calculadora do surebet.com..."
+                ></textarea>
+                
+                <button id="analyzeBtn" class="analyze-btn">Clique em Analisar</button>
+            </div>
+            
+            <div id="hypotheses" class="hypotheses-container">
+                <!-- Hipóteses serão inseridas aqui pelo JavaScript -->
             </div>
         </div>
     </section>
@@ -90,5 +110,6 @@
     <script src="script.js"></script>
     <script src="chat.js"></script>
     <script src="video-overlay.js"></script>
+    <script src="arbitrage.js"></script>
 </body>
 </html>
