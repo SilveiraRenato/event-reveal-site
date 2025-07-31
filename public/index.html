@@ -50,15 +50,22 @@
                 <!-- Coluna do vídeo (70%) -->
                 <div class="video-column">
                     <div class="video-container">
-                        <iframe 
-                            src="https://www.youtube.com/embed/07WN4qA0VUw" 
-                            title="YouTube video player" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen>
-                        </iframe>
+                        <div style="position:relative;padding-top:56.25%;">
+                            <iframe 
+                                id="mainVideo"
+                                src="https://iframe.mediadelivery.net/embed/471287/ef51040e-8048-40d4-a5bb-67093cca1ad9?autoplay=true&loop=false&muted=true&preload=true&responsive=true" 
+                                loading="lazy" 
+                                style="border:0;position:absolute;top:0;height:100%;width:100%;" 
+                                allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" 
+                                allowfullscreen="true">
+                            </iframe>
+                            <div id="videoOverlay" class="video-overlay">
+                                <span class="overlay-text">Clique para ouvir</span>
+                            </div>
+                            <div id="videoMask" class="video-mask" style="display:none;"></div>
+                        </div>
                     </div>
-                    <button class="cta-button">Saiba Mais</button>
+                    <button class="cta-button" onclick="window.open('https://wa.me/5583999658835', '_blank')">Falar com o especialista</button>
                 </div>
 
                 <!-- Coluna do chat (30%) -->
@@ -82,5 +89,6 @@
 
     <script src="script.js"></script>
     <script src="chat.js"></script>
+    <script src="video-overlay.js"></script>
 </body>
 </html>
