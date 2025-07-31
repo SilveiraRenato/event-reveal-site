@@ -1,9 +1,10 @@
 // Configuração do contador decrescente
 class CountdownTimer {
-    constructor() {
-        // Inicia com 7 minutos (420 segundos)
-        this.timeLeft = 7 * 60;
+    constructor(targetDate) {
+        this.targetDate = new Date(targetDate).getTime();
         this.elements = {
+            days: document.getElementById('days'),
+            hours: document.getElementById('hours'),
             minutes: document.getElementById('minutes'),
             seconds: document.getElementById('seconds')
         };
@@ -22,20 +23,27 @@ class CountdownTimer {
     }
 
     updateCountdown() {
-        if (this.timeLeft > 0) {
-            const minutes = Math.floor(this.timeLeft / 60);
-            const seconds = this.timeLeft % 60;
+        const now = new Date().getTime();
+        const distance = this.targetDate - now;
 
-            // Atualizar elementos
-            this.elements.minutes.textContent = this.formatNumber(minutes);
-            this.elements.seconds.textContent = this.formatNumber(seconds);
-
-            // Decrementa o tempo
-            this.timeLeft--;
-        } else {
-            // Timer expirado - reinicia para 7 minutos
-            this.timeLeft = 7 * 60;
+        if (distance < 0) {
+            // Se a data passou, parar o contador
+            clearInterval(this.interval);
+            this.displayZeros();
+            return;
         }
+
+        // Calcular tempo restante
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Atualizar elementos
+        this.elements.days.textContent = this.formatNumber(days);
+        this.elements.hours.textContent = this.formatNumber(hours);
+        this.elements.minutes.textContent = this.formatNumber(minutes);
+        this.elements.seconds.textContent = this.formatNumber(seconds);
     }
 
     formatNumber(num) {
@@ -181,8 +189,12 @@ class HeaderEffects {
 
 // Inicialização quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
+    // Definir data alvo para o countdown (30 dias a partir de hoje como exemplo)
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 30);
+    
     // Inicializar componentes
-    new CountdownTimer();
+    new CountdownTimer(targetDate);
     CTAHandler.init();
     HeaderEffects.init();
     AnimationUtils.observeElements();
